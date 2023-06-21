@@ -1,4 +1,4 @@
-from minloraplus import LoRAParametrization
+from minloraplus.model import LoRAParametrization
 from torch import nn
 
 
@@ -12,8 +12,12 @@ def apply_to_lora(fn):
     return apply_fn
 
 
-enable_lora = lambda model: model.apply(apply_to_lora(lambda x: x.enable_lora()))
-disable_lora = lambda model: model.apply(apply_to_lora(lambda x: x.disable_lora()))
+def enable_lora(model):
+    return model.apply(apply_to_lora(lambda x: x.enable_lora()))
+
+
+def disable_lora(model):
+    return model.apply(apply_to_lora(lambda x: x.disable_lora()))
 
 
 # ------------------- helper function for collecting parameters for training/saving -------------------

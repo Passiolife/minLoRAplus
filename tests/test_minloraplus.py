@@ -1,6 +1,7 @@
 import torch
-from minloraplus import add_lora, apply_to_lora, disable_lora, enable_lora, get_lora_params, merge_lora, name_is_lora, remove_lora, load_multiple_lora, select_lora, get_lora_state_dict
+from minloraplus.model import add_lora
 _ = torch.set_grad_enabled(False)
+
 
 def test_addlora():
     model = torch.nn.Sequential(
