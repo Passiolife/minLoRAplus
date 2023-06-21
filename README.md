@@ -1,5 +1,6 @@
-# minLoRA
+# minLoRAplus
 
+A fork of the excellent [minLoRA](https://github.com/cccntu/minLoRA) repo by [cccntu](https://github.com/cccntu), with functionality added for Passio use cases
 
 A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/microsoft/LoRA). In only ~100 lines of code, minLoRA supports the following features:
 
@@ -34,7 +35,8 @@ pip install -e .
 
 ```python
 import torch
-from minlora import add_lora, apply_to_lora, disable_lora, enable_lora, get_lora_params, merge_lora, name_is_lora, remove_lora, load_multiple_lora, select_lora
+from minloraplus import add_lora, apply_to_lora, disable_lora, enable_lora, get_lora_params, merge_lora, name_is_lora,
+    remove_lora, load_multiple_lora, select_lora
 ```
 
 ### Training a model with minLoRA

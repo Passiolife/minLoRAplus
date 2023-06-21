@@ -1,4 +1,4 @@
-from minlora import LoRAParametrization
+from minloraplus import LoRAParametrization
 from torch import nn
 
 
