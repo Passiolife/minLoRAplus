@@ -11,4 +11,5 @@ from minloraplus.utils import (
     select_lora,
     tie_weights,
     untie_weights,
+    print_trainable_parameters
 )

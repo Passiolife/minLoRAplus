@@ -2,9 +2,9 @@
 
 A fork of the excellent [minLoRA](https://github.com/cccntu/minLoRA) repo by [cccntu](https://github.com/cccntu), with functionality added for Passio use cases
 
-A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/microsoft/LoRA). In only ~100 lines of code, minLoRA supports the following features:
+A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/microsoft/LoRA). 
 
-### Features
+In only ~100 lines of code, minLoRA supports the following features:
 
 - Functional, no need to modify the model definition
 - Works everywhere, as long as you use `torch.nn.Module`
@@ -12,7 +12,13 @@ A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/
 - Easily extendable, you can add your own LoRA parameterization
 - Supports training, inference, and inference with multiple LoRA models
 
-## Demo
+### Plus:
+- Finetune any [timm](https://github.com/huggingface/pytorch-image-models) models using LoRA:
+  - `ViTClassifier` module to train any `timm` model with transformer architecture
+  - `CNNClassifier` module to train any `timm` CNN.
+
+
+## Basic Usage
 
 - `demo.ipynb` shows the basic usage of the library
 - `advanced_usage.ipynb` shows how you can add LoRA to other layers such as embedding, and how to tie weights
@@ -20,14 +26,26 @@ A minimal, but versatile PyTorch re-implementation of [LoRA](https://github.com/
 ## Examples
 
 - Finetuning GPT using LoRA + nanoGPT: https://github.com/cccntu/LoRAnanoGPT/pull/1/files
+- Sample training code for `timm` ViT: `vit_trainer.ipynb`
+- Sample training code for `timm` CNN: `cnn_trainer.ipynb`
+
+## Running Trainers
+
+If you just want to run the notebooks make sure the requirements are installed first:
+
+```
+pip install -r requirements.txt
+```
+
+Then run `jupyter notebook`.
 
 ## Library Installation
 
-If you want to `import minlora` into your project:
+If you want to `import minloraplus` into your project:
 
 ```
-git clone https://github.com/cccntu/minLoRA.git
-cd minLoRA
+git clone https://github.com/Passiolife/minLoRAplus.git
+cd minLoRAplus
 pip install -e .
 ```
 
@@ -39,7 +57,7 @@ from minloraplus import add_lora, apply_to_lora, disable_lora, enable_lora, get_
     remove_lora, load_multiple_lora, select_lora
 ```
 
-### Training a model with minLoRA
+### Training a model with minLoRAplus
 
 ```python
 model = torch.nn.Linear(in_features=5, out_features=3)
@@ -60,7 +78,7 @@ optimizer = torch.optim.AdamW(parameters, lr=1e-3)
 lora_state_dict = get_lora_state_dict(model)
 ```
 
-### Loading and Inferencing with minLoRA
+### Loading and Inferencing with minLoRAplus
 
 ```python
 # Step 1: Add LoRA to your model
@@ -98,8 +116,8 @@ Y2 = select_lora(model, 2)(x)
 
 - [microsoft/LoRA](https://github.com/microsoft/LoRA) has the official implementation of LoRA, in PyTorch
 - [karpathy/minGPT](https://github.com/karpathy/minGPT) the structure of the repo is adapted from minGPT
-
+- [cccntu/minLoRA](https://github.com/cccntu/minLoRA) the original repo minLoRAplus is based on
 
 ### TODO
-- [x] A notebook to show how to configure LoRA parameters
-- [x] Real training & inference examples
+- [ ] Add pytorch-lightning training example for GPT
+- [ ] Add conversion functions so vision models can be run in the Passio MindsEye app
