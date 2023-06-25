@@ -1,5 +1,5 @@
-from minlora.model import LoRAParametrization, add_lora, default_lora_config, merge_lora, remove_lora
-from minlora.utils import (
+from minloraplus.model import LoRAParametrization, add_lora, default_lora_config, merge_lora, remove_lora
+from minloraplus.utils import (
     apply_to_lora,
     disable_lora,
     enable_lora,
@@ -11,4 +11,5 @@ from minlora.utils import (
     select_lora,
     tie_weights,
     untie_weights,
+    print_trainable_parameters
 )

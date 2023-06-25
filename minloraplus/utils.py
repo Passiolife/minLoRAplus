@@ -1,6 +1,19 @@
-from minlora import LoRAParametrization
+from minloraplus.model import LoRAParametrization
 from torch import nn
 
+def print_trainable_parameters(model):
+    """
+    Prints the number of trainable parameters in the model.
+    """
+    trainable_params = 0
+    all_param = 0
+    for _, param in model.named_parameters():
+        all_param += param.numel()
+        if param.requires_grad:
+            trainable_params += param.numel()
+    print(
+        f"trainable params: {trainable_params} || all params: {all_param} || trainable%: {100 * trainable_params / all_param}"
+    )
 
 def apply_to_lora(fn):
     """apply a function to LoRAParametrization layers, designed to be used with model.apply"""
@@ -12,8 +25,12 @@ def apply_to_lora(fn):
     return apply_fn
 
 
-enable_lora = lambda model: model.apply(apply_to_lora(lambda x: x.enable_lora()))
-disable_lora = lambda model: model.apply(apply_to_lora(lambda x: x.disable_lora()))
+def enable_lora(model):
+    return model.apply(apply_to_lora(lambda x: x.enable_lora()))
+
+
+def disable_lora(model):
+    return model.apply(apply_to_lora(lambda x: x.disable_lora()))
 
 
 # ------------------- helper function for collecting parameters for training/saving -------------------
