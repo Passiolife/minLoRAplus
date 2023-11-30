@@ -4,7 +4,7 @@ setup(
     name="minLoRA",
     version="0.1.0",
     author="Jonathan Chang",
-    packages=["minlora"],
+    packages=["minloraplus"],
     description="A PyTorch re-implementation of LoRA",
     license="MIT",
     install_requires=[
